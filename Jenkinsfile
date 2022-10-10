@@ -32,7 +32,7 @@ pipeline {
                 }
             }
             steps {
-              deploy adapters: [tomcat9(credentialsId: 'tomcat', path: '', url: 'http://15.206.125.129:8080/')], contextPath: 'sampletomcatwebapp', war: '**/*.war'  
+              deploy adapters: [tomcat9(credentialsId: 'tomcatDeployCred', path: '', url: 'http://15.206.125.129:8080/')], contextPath: 'sampletomcatwebapp', war: '**/*.war'  
            }
             
         }
