@@ -30,6 +30,9 @@ pipeline {
                     agent {
                         label "slave1"
                     }
+                     steps {
+                        echo "Me in stage three"
+                    }
                 }
             }
         }
