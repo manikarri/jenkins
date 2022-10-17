@@ -1,30 +1,37 @@
 pipeline {
-    agent none
-    
-    tools { 
-        maven 'MAVEN1' 
-        
-    }
+    agent any
     stages {
-         parallel {
-        stage ('Initialize') {
-             agent {
-              node 'slave1'
-              }
+        stage('NORMAL Stage') {
             steps {
-                sh '''
-                    echo "PATH = ${PATH}"
-                    echo "M2_HOME = ${M2_HOME}"
-                ''' 
+                echo 'I am one'
             }
         }
-
-        stage ('Build') {
-            steps {
-                sh 'mvn clean install'
+        stage('Parallel Stage') {
+            when {
+                branch 'master'
+            }
+            failFast true
+            parallel {
+                stage('stage one') {
+                    agent {
+                        label "slave1"
+                    }
+                    steps {
+                        echo "Me in stage one"
+                    }
+                }
+                stage('Stage two') {
+                  
+                    steps {
+                        echo "Me in stage two"
+                    }
+                }
+                stage('Stage three') {
+                    agent {
+                        label "slave1"
+                    }
+                }
             }
         }
-         }
-         }
-
+    }
 }
