@@ -7,7 +7,7 @@ echo " duild success"
 stage ('test') {
 echo "testing success"
 }
-stage ('deploy': {
+stage ('deploy') {
 deploy ('git branch: 'main', url: 'https://github.com/manikarri/jenkins.git'')
 }
 }
