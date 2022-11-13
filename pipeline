@@ -1,14 +1,14 @@
 pipeline {
 agent any 
 stages {
-stage('buld') {
+stage('build') {
 echo " duild success"
 }
 stage ('test') {
 echo "testing success"
 }
 stage ('deploy') {
-deploy ('git branch: 'main', url: 'https://github.com/manikarri/jenkins.git'')
+deploy (git branch: 'main', url: 'https://github.com/manikarri/jenkins.git')
 }
 }
 }
